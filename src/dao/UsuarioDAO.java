@@ -7,14 +7,23 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.imageio.ImageIO;
+import javax.swing.JOptionPane;
 
 import model.UsuarioModel;
 
 public class UsuarioDAO {
+	
+	
+	/**
+	 * metodo responsavel pela inserção do usuario na base de
+	 * dados
+	 * 
+	 */
 	public void insert(UsuarioModel usuario) throws Exception {
 
 		File file = new File("res/user/user_" + usuario.getLogin() + ".txt");
@@ -36,6 +45,10 @@ public class UsuarioDAO {
 		}
 	}
 
+	/**
+	 * metodo responsável pela alteração do usuario na 
+	 * base de dados.
+	 */
 	public void update(UsuarioModel usuario) throws Exception {
 
 		File file = new File("res/user/user_" + usuario.getLogin() + ".txt");
@@ -57,6 +70,11 @@ public class UsuarioDAO {
 
 	}
 
+	/**
+	 * metodo responsavel pela deleção do usuario
+	 * da base de dados.
+	 * 
+	 */
 	public void delete(UsuarioModel usuario) throws Exception {
 
 		File file = new File("res/user/user_" + usuario.getLogin() + ".txt");
@@ -66,6 +84,12 @@ public class UsuarioDAO {
 
 	}
 
+	
+	/**
+	 *
+	 * metodo responsável pela consulta do usuario através do 
+	 * login
+	 */
 	public UsuarioModel consultar(String login) throws Exception {
 
 		File file = new File("res/user/user_" + login + ".txt");
@@ -92,6 +116,12 @@ public class UsuarioDAO {
 		return usuario;
 	}
 
+	
+	/**
+	 *
+	 * metodo responsável por listar todos os usuarios.
+	 * 
+	 */
 	public List<UsuarioModel> listarUsuarios() throws Exception {
 
 		File diretorio = new File("res/user");
@@ -125,6 +155,13 @@ public class UsuarioDAO {
 		return listaUsuarios;
 	}
 
+	/**
+	 *
+	 * metodo interno da classe, responsável por
+	 * carregar a biometria do usuario através do
+	 * login do usuario.
+	 * 
+	 */
 	private BufferedImage loadBiometria(String login) {
 
 		File file = new File("res/img/" + login + ".png");
@@ -138,6 +175,13 @@ public class UsuarioDAO {
 		return img;
 	}
 
+	
+	/**
+	 * 
+	 * metodo responsável pela persistencia da biometria
+	 * do usuario através do login
+	 * 
+	 */
 	public void saveBiometria(String login, BufferedImage img) {
 
 		File file = new File("res/img/" + login + ".png");
@@ -149,6 +193,12 @@ public class UsuarioDAO {
 		}
 	}
 
+	
+	/**
+	 * 
+	 * metodo responsável pela exclusão da biometria do usuario.
+	 * 
+	 */
 	private boolean deleteBiometria(String login) {
 		File file = new File("res/img/" + login + ".png");
 
@@ -158,4 +208,6 @@ public class UsuarioDAO {
 		return true;
 
 	}
+	
+	
 }

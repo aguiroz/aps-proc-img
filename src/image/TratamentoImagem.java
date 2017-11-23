@@ -2,6 +2,12 @@ package image;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
+import dao.ImageDAO;
 
 public class TratamentoImagem {
 
@@ -17,14 +23,36 @@ public class TratamentoImagem {
 
 	}
 
-	public void tratatImagem(BufferedImage img) {
+	/**
+	 * 
+	 *metodo responsável por fazer gerenciar outras classes,
+	 *a sequencia é transformar a imagem em cinza, recuperar
+	 *a media do histograma da imagem, depois fazer a filtragem,
+	 *eliminando ruidos indesejados e transformando em uma imagem
+	 *binaria.
+	 * 
+	 */
+	public BufferedImage tratatImagem(BufferedImage img) {
 
-		escalaCinza.toGray(img);
-		int media = amostragem.getMediaHistograma(img);
-		filtro.filter(img, media);
+		BufferedImage imgCinza;
+		BufferedImage imgFiltrada;
+		imgCinza = escalaCinza.toGray(img);
+		int media = amostragem.getMediaHistograma(imgCinza);
+		imgFiltrada = filtro.filter(imgCinza, media);
 
+		return imgFiltrada;
 	}
 
+	
+	/**
+	 * 
+	 *metodo responsável por fazer a comaparação entre 2
+	 *imagens, o valor de cada pixel é subtraido da valor
+	 *do pixel da oura imagem, caso o resultado seja
+	 *diferente de 0, a comparação é interrompida e um
+	 *valor falso é retornado.
+	 *
+	 */
 	public boolean comparaImagem(BufferedImage img1, BufferedImage img2) {
 
 		if (img1.getWidth() != img2.getWidth()) {
@@ -64,4 +92,6 @@ public class TratamentoImagem {
 		return true;
 	}
 
+	
+	
 }

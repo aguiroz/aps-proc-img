@@ -5,7 +5,14 @@ import java.awt.image.BufferedImage;
 
 public class Filtro {
 
-	public void filter(BufferedImage img, int tonalidadeImg) {
+	
+	/**
+	 * 
+	 *metodo responsável por transformar a imagem em 
+	 *escala de cinza em uma imagem binária. 
+	 * 
+	 */
+	public BufferedImage filter(BufferedImage img, int tonalidadeImg) {
 		
 		Color color;
 		BufferedImage grayImg = new BufferedImage(img.getWidth(), img.getHeight(), BufferedImage.TYPE_INT_ARGB);
@@ -36,7 +43,7 @@ public class Filtro {
 			}
 		}
 		
-		img = grayImg;
+		return grayImg;
 	}
 
 	

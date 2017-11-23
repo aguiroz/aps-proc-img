@@ -19,6 +19,12 @@ public class LoginController {
 		tratamentoImagem = new TratamentoImagem();
 	}
 
+	
+	/**
+	 *
+	 *metodo responsavel por fazer a autenticação do usuario.
+	 * 
+	 */
 	public boolean autenticar(String login, String pathBiometria) throws Exception {
 
 		boolean autenticacao = false;
@@ -30,9 +36,9 @@ public class LoginController {
 			
 			biometria = imageDAO.loadBiometria(pathBiometria);
 			
-			tratamentoImagem.tratatImagem(biometria);
+			BufferedImage biometriaTrat = tratamentoImagem.tratatImagem(biometria);
 			
-			autenticacao = tratamentoImagem.comparaImagem(biometria, usuario.getBiometria());
+			autenticacao = tratamentoImagem.comparaImagem(biometriaTrat, usuario.getBiometria());
 
 		} catch (Exception e) {
 			e.printStackTrace();

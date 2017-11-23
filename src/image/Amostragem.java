@@ -5,6 +5,12 @@ import java.awt.image.BufferedImage;
 
 public class Amostragem {
 
+	/**
+	 * 
+	 *metodo responsavel por gerar o histograma da imagem
+	 *através do canal vermelho 
+	 * 
+	 */
 	private int[] getHistograma(BufferedImage img) {
 
 		int[] histograma = new int[256];
@@ -26,6 +32,12 @@ public class Amostragem {
 		return histograma;
 	}
 
+	
+	/**
+	 * 
+	 *metodo responsável por calcular a média do histograma 
+	 * 
+	 */
 	public int getMediaHistograma(BufferedImage img) {
 
 		int[] histograma = getHistograma(img);

@@ -44,25 +44,7 @@ public class CadastroView extends JFrame {
 	
 	int index = 0;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					CadastroView frame = new CadastroView();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
+	
 	public CadastroView() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 912, 532);
@@ -121,9 +103,7 @@ public class CadastroView extends JFrame {
 		btnIncluir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				operacaoIncluir();
-				//habilitarCampos();
-				//incluir();
-			}
+				}
 		});
 		btnIncluir.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnIncluir.setBounds(448, 13, 97, 71);

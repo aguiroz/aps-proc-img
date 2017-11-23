@@ -8,6 +8,12 @@ import javax.imageio.ImageIO;
 
 public class ImageDAO {
 
+	/**
+	 *
+	 * metodo responsável por carregar o arquivo da imagem
+	 * para a memória, recebendo por parametro o caminho da
+	 * imagem
+	 */
 	public BufferedImage loadBiometria(String path) {
 		
 		File file = new File(path);

@@ -5,7 +5,13 @@ import java.awt.image.BufferedImage;
 
 public class EscalaCinza {
 
-	public void toGray(BufferedImage img) {
+	
+	/**
+	 * 
+	 *metodo responsável pela transformação da imagem em escala de cinza.
+	 * 
+	 */
+	public BufferedImage toGray(BufferedImage img) {
 
 		BufferedImage imgTratada = new BufferedImage(img.getWidth(), img.getHeight(), BufferedImage.TYPE_INT_ARGB);
 		Color color;
@@ -30,7 +36,7 @@ public class EscalaCinza {
 			}
 		}
 		
-		img = imgTratada;
+		return imgTratada;
 
 	}
 

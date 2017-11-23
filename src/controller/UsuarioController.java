@@ -88,9 +88,9 @@ public class UsuarioController {
 		if(biometria == null) {
 			System.out.println("nulo");
 		}
-		tratamentoImagem.tratatImagem(biometria);
+		BufferedImage biometriaTrat = tratamentoImagem.tratatImagem(biometria);
 
-		return biometria;
+		return biometriaTrat;
 	}
 
 }

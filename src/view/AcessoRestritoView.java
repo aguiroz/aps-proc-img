@@ -17,9 +17,6 @@ import java.awt.event.ActionEvent;
 
 public class AcessoRestritoView extends JFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	private JPanel contentPane;
@@ -30,6 +27,7 @@ public class AcessoRestritoView extends JFrame {
 	private JTextField txtResponsavel;
 	private JTextField txtCNPJ;
 	private JTextField txtProduto;
+	private CadastroView cadastroView;
 	
 	JLabel lblInformaoSobrePropriedade;
 	JLabel lblImpactosNosLenois;
@@ -45,29 +43,7 @@ public class AcessoRestritoView extends JFrame {
 	
 	private UsuarioModel usuario;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					UsuarioModel user = new UsuarioModel();
-					user.setLogin("arozaboni");
-					user.setNome("Anderson Guilherme Rozaboni");
-					user.setNivelAcesso(3);
-					AcessoRestritoView frame = new AcessoRestritoView(user);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
-	/**
-	 * Create the frame.
-	 */
 	public AcessoRestritoView(UsuarioModel usuario) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1037, 653);
@@ -212,10 +188,27 @@ public class AcessoRestritoView extends JFrame {
 		txtProduto.setBounds(132, 441, 461, 22);
 		contentPane.add(txtProduto);
 		
+		JButton btnCadastrar = new JButton("Cadastro...");
+		btnCadastrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(cadastroView == null) {
+					cadastroView = new CadastroView();
+					cadastroView.setVisible(true);
+				} else {
+					cadastroView.setVisible(true);
+				}
+				
+			}
+		});
+		btnCadastrar.setBounds(910, 528, 97, 25);
+		contentPane.add(btnCadastrar);
+		
 		this.usuario = usuario;
 		setNivelAcesso();
 		
 	}
+	
+	
 	private void setNivelAcesso(){
 		switch(usuario.getNivelAcesso()) {
 		case 1:

@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import controller.LoginController;
+import controller.UsuarioController;
 import model.UsuarioModel;
 
 import javax.swing.JLabel;
@@ -31,10 +32,10 @@ public class LoginView extends JFrame implements Serializable {
 	private JTextField txtBiometria;
 	
 	private LoginController loginController;
+	private UsuarioController usuarioController;
+	private UsuarioModel usuarioModel;
 
-	/**
-	 * Launch the application.
-	 */
+
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -97,6 +98,8 @@ public class LoginView extends JFrame implements Serializable {
 		contentPane.add(btnAutenticar);
 		
 		loginController = new LoginController();
+		usuarioController = new UsuarioController();
+		usuarioModel = new UsuarioModel();
 		
 	}
 	
@@ -117,15 +120,12 @@ public class LoginView extends JFrame implements Serializable {
 		
 		String login = txtLogin.getText();
 		String biometria = txtBiometria.getText();
-		
+				
 		try {
 			if(loginController.autenticar(login, biometria)) {
 				this.setVisible(false);
-				UsuarioModel usuario = new UsuarioModel();
-				usuario.setLogin("arozaboni");
-				usuario.setNivelAcesso(3);
-				usuario.setNome("Anderson");
-				new AcessoRestritoView(usuario).setVisible(true);
+				usuarioModel = usuarioController.consultar(login);
+				new AcessoRestritoView(usuarioModel).setVisible(true);
 			} else {
 				JOptionPane.showMessageDialog(this, "Não foi possivel autenticar");
 			}
